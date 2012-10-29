@@ -76,15 +76,35 @@ $TINYMCE_ADV_BUTTONS = array(
 add_filter( 'tiny_mce_before_init', 'wp_tidy_tinymce_before_init' );
 
 function wp_tidy_tinymce_before_init( $settings ) {
+  global $TINYMCE_BLOCK_FORMATS;
+  global $TINYMCE_ADV_BUTTONS;
 
-    // Limit the format available
-    //$settings['theme_advanced_blockformats'] = 'h2,h3,h4,p';
+  $block_formats = array();
+  $buttons = array();
 
-    // Remove toys we dont want them playing with
-    //$settings['theme_advanced_disable'] = 'strikethrough,underline,forecolor,justifyfull,outdent,indent,charmap,help,pasteword';
+  foreach($TINYMCE_BLOCK_FORMATS as $k => $v){
+    $opt = get_option('blockformat_'.$k);
 
-    return $settings;
+    if($opt == "1"){
+      array_push($block_formats, $k);
+    }
+  }
 
+  foreach($TINYMCE_ADV_BUTTONS as $k => $v){
+    $opt = get_option('adv_button_'.$k);
+
+    if($opt == "1"){
+      array_push($buttons, $k);
+    }
+  }
+
+  // Limit the format available
+  $settings['theme_advanced_blockformats'] = implode(",", $block_formats);
+
+  // Remove toys we dont want them playing with
+  $settings['theme_advanced_disable'] = implode(",", $buttons);
+
+  return $settings;
 }
 
 
