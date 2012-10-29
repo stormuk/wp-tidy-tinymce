@@ -3,16 +3,6 @@ wp-tidy-tinymce
 
 Simple options to tidy up the uncommonly used buttons and controls from WordPress TinyMCE editor
 
-Installation
-============
-
-Download a zip of the repository and put in a *wp-tidy-tinymce* directory inside
-*wp-content/plugins*.
-
-Go to the plugins page and activate it.
-
-You can then visit the Settings > Tidy TinyMCE page to pick which block formats and buttons you want to be available in the editor.
-
 Currently the plugin supports the following:
 
 **Block Formats**
@@ -51,6 +41,16 @@ Currently the plugin supports the following:
 - justifyright / Right align
 - justifyleft / Left align
 - spellchecker / Spell checker
+
+Installation
+============
+
+Download a zip of the repository and put in a *wp-tidy-tinymce* directory inside
+*wp-content/plugins*.
+
+Go to the plugins page and activate it.
+
+You can then visit the Settings > Tidy TinyMCE page to pick which block formats and buttons you want to be available in the editor.
 
 About
 =====
