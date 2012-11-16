@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== WP Tidy TinyMCE ===
 Contributors: stormuk, adam_pope
 Donate link: http://www.stormconsultancy.co.uk/
 Tags: tinymce
