@@ -1,8 +1,8 @@
 <?php
 /*
- * Copyright (c) 2012 Storm Consultancy (EU) Ltd, 
+ * Copyright (c) 2012-2014 Storm Consultancy (EU) Ltd,
  * http://www.stormconsultancy.co.uk/
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -10,10 +10,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -54,10 +54,10 @@ function wp_tidy_tinymce_register_settings(){
  */
 function wp_tidy_tinymce_menu(){
   add_options_page(
-    "Tidy TinyMCE Options", 
-    "Tidy TinyMCE", 
-    'administrator', 
-    'wptidytinymceoptions', 
+    "Tidy TinyMCE Options",
+    "Tidy TinyMCE",
+    'administrator',
+    'wptidytinymceoptions',
     'wp_tidy_tinymce_options'
   );
 }
@@ -83,12 +83,12 @@ function wp_tidy_tinymce_options(){
 
     <table class="form-table">
       <tr valign="top">
-        <th scope="row">Select block formats to keep</th>
+        <th scope="row">Select block formats to <b>keep</b></th>
         <td>
           <?php
             foreach($TINYMCE_BLOCK_FORMATS as $k => $v){
               ?>
-              <label style="display: block;"> 
+              <label style="display: block;">
                 <input type="checkbox" name="<?php echo 'blockformat_'.$k ?>" value="1" <?php if(get_option('blockformat_'.$k) == 1){ echo 'checked="checked"'; } ?> />
                 <?php echo $v; ?>
               </label>
@@ -98,12 +98,12 @@ function wp_tidy_tinymce_options(){
         </td>
       </tr>
       <tr valign="top">
-        <th scope="row">Select advanced buttons to remove</th>
+        <th scope="row">Select advanced buttons to <b>remove</b></th>
         <td>
           <?php
             foreach($TINYMCE_ADV_BUTTONS as $k => $v){
               ?>
-              <label style="display: block;"> 
+              <label style="display: block;">
                 <input type="checkbox" name="<?php echo 'adv_button_'.$k ?>" value="1" <?php if(get_option('adv_button_'.$k) == 1){ echo 'checked="checked"'; } ?> />
                 <?php echo $v; ?>
               </label>

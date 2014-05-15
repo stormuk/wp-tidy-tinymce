@@ -3,16 +3,19 @@ wp-tidy-tinymce
 
 Simple options to tidy up the uncommonly used buttons and controls from WordPress TinyMCE editor
 
+Updated to work with both the new 3.9 editor and 3.8 and earlier version.
+
+
 Currently the plugin supports the following:
 
 **Block Formats**
 
-- h1 / Heading 1 
-- h2 / Heading 2 
-- h3 / Heading 3 
-- h4 / Heading 4 
-- h5 / Heading 5 
-- h6 / Heading 6 
+- h1 / Heading 1
+- h2 / Heading 2
+- h3 / Heading 3
+- h4 / Heading 4
+- h5 / Heading 5
+- h6 / Heading 6
 - p / Paragraph
 - address / Address
 - pre / Preformatted
@@ -55,7 +58,7 @@ You can then visit the Settings > Tidy TinyMCE page to pick which block formats 
 About
 =====
 
-Version: 1.0
+Version: 2.0
 
 Written by Adam Pope of Storm Consultancy - <http://www.stormconsultancy.co.uk>
 
@@ -66,7 +69,7 @@ If you are looking for a [Bath WordPress Developer](http://www.stormconsultancy.
 License
 =======
 
-Copyright (c) 2012 Storm Consultancy (EU) Ltd, 
+Copyright (c) 2012-14 Storm Consultancy (EU) Ltd,
 <http://www.stormconsultancy.co.uk/>
 
 Permission is hereby granted, free of charge, to any person obtaining

@@ -1,14 +1,16 @@
-=== WP Tidy TinyMCE ===
+=== Plugin Name ===
 Contributors: stormuk, adam_pope
 Donate link: http://www.stormconsultancy.co.uk/
 Tags: tinymce
 Requires at least: 3.4
-Tested up to: 3.5
-Stable tag: 1.0
+Tested up to: 3.9
+Stable tag: 2.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
-Simple options to tidy up the uncommonly used buttons and controls from WordPress TinyMCE editor
+Simple options to tidy up the uncommonly used buttons and controls from WordPress TinyMCE editor.
+
+Updated to work with both the new 3.9 editor and 3.8 and earlier version.
 
 == Description ==
 
@@ -18,12 +20,12 @@ Currently the plugin supports the following:
 
 Block Formats
 
-* h1 / Heading 1 
-* h2 / Heading 2 
-* h3 / Heading 3 
-* h4 / Heading 4 
-* h5 / Heading 5 
-* h6 / Heading 6 
+* h1 / Heading 1
+* h2 / Heading 2
+* h3 / Heading 3
+* h4 / Heading 4
+* h5 / Heading 5
+* h6 / Heading 6
 * p / Paragraph
 * address / Address
 * pre / Preformatted
@@ -63,6 +65,9 @@ Go to the plugins page and activate it.
 You can then visit the Settings > Tidy TinyMCE page to pick which block formats and buttons you want to be available in the editor.
 
 == Changelog ==
+
+= 2.0 =
+* Updated to work with 3.9
 
 = 1.0 =
 * First version

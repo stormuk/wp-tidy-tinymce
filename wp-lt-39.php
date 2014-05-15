@@ -1,12 +1,5 @@
 <?php
 /*
- * Plugin Name: WP Tidy TinyMCE
- * Description: Simple options to tidy up the uncommonly used buttons and controls from WordPress TinyMCE editor
- * Version: 2.0
- * Author: Adam Pope
- * Author URI: http://www.stormconsultancy.co.uk
- * License: MIT
- *
  * Copyright (c) 2012-2014 Storm Consultancy (EU) Ltd,
  * http://www.stormconsultancy.co.uk/
  *
@@ -30,14 +23,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-// Plugin Version
-define('WP_TIDY_TINYMCE_CURRENT_VERSION', '2' );
-
-if ( version_compare( get_bloginfo( 'version' ), '3.9', '<' ) ) {
-    include_once('wp-lt-39.php');
-}else{
-
-  $TINYMCE_BLOCK_FORMATS = array(
+$TINYMCE_BLOCK_FORMATS = array(
     'h1' => 'Heading 1',
     'h2' => 'Heading 2',
     'h3' => 'Heading 3',
@@ -49,76 +35,65 @@ if ( version_compare( get_bloginfo( 'version' ), '3.9', '<' ) ) {
     'pre' => 'Preformatted'
     );
 
-  $TINYMCE_ADV_BUTTONS = array(
+$TINYMCE_ADV_BUTTONS = array(
     'strikethrough' => "Strikethrough",
     'underline' => "Underline",
     'bold' => "Bold",
     'italic' => "Italic",
     'forecolor' => "Font color",
-    'alignjustify' => "Justify text",
+    'justifyfull' => "Justify text",
     'outdent' => "Outdent",
     'indent' => "Indent",
     'charmap' => "Special Characters",
-    'wp_help' => "Help",
-    'pastetext' => "Paste",
+    'help' => "Help",
+    'pasteword' => "Paste from Word",
+    'pastetext' => "Paste as plain text",
     'removeformat' => "Remove formatting",
     'undo' => "Undo",
     'redo' => "Redo",
     'bullist' => "Bullet list",
     'numlist' => "Numbered List",
     'blockquote' => "Block quote",
-    'aligncenter' => "Center align",
-    'alignright' => "Right align",
-    'alignleft' => "Left align",
-    'spellchecker' => "Spell checker",
-    'link' => 'Link',
-    'unlink' => 'Unlink',
-    'fullscreen' => 'Fullscreen',
-    'hr' => 'Horizontal Rule'
-  );
+    'justifycenter' => "Center align",
+    'justifyright' => "Right align",
+    'justifyleft' => "Left align",
+    'spellchecker' => "Spell checker"
+    );
 
-  function delete_button($buttons) {
-    global $TINYMCE_ADV_BUTTONS;
+/**
+ * Add styles/classes to the "Styles" drop-down
+ */
+add_filter( 'tiny_mce_before_init', 'wp_tidy_tinymce_before_init' );
 
-    foreach($buttons as $idx => $value){
-      $opt = get_option('adv_button_'.$value);
+function wp_tidy_tinymce_before_init( $settings ) {
+  global $TINYMCE_BLOCK_FORMATS;
+  global $TINYMCE_ADV_BUTTONS;
 
-      if($opt == '1'){
-        unset($buttons[$idx]);
-      }
+  $block_formats = array();
+  $buttons = array();
+
+  foreach($TINYMCE_BLOCK_FORMATS as $k => $v){
+    $opt = get_option('blockformat_'.$k);
+
+    if($opt == "1"){
+      array_push($block_formats, $k);
     }
-
-     return $buttons;
   }
 
-  add_filter('mce_buttons', 'delete_button');
-  add_filter('mce_buttons_2', 'delete_button');
+  foreach($TINYMCE_ADV_BUTTONS as $k => $v){
+    $opt = get_option('adv_button_'.$k);
 
-  function filter_block_formats( $init ) {
-    global $TINYMCE_BLOCK_FORMATS;
-
-    $formats = "";
-
-    foreach($TINYMCE_BLOCK_FORMATS as $k => $v){
-      $opt = get_option('blockformat_'.$k);
-
-      if($opt == "1"){
-        $formats .= "$v=$k;";
-      }
+    if($opt == "1"){
+      array_push($buttons, $k);
     }
-
-    $formats = rtrim($formats, ";");
-
-    $init['block_formats'] = $formats; //"Paragraph=p; Heading 3=h3; Heading 4=h4";
-
-    return $init;
   }
 
-  add_filter('tiny_mce_before_init', 'filter_block_formats');
+  // Limit the format available
+  $settings['theme_advanced_blockformats'] = implode(",", $block_formats);
+
+  // Remove toys we dont want them playing with
+  $settings['theme_advanced_disable'] = implode(",", $buttons);
+
+  return $settings;
 }
-
-
-
-require_once (dirname(__FILE__).'/wp-tidy-tinymce-options.php');
-
 ?>
